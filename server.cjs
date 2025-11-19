@@ -1,6 +1,38 @@
 const fastify = require('fastify')({ logger: true })
 const path = require("node:path")
 
+const {receiver} = require("@seratch_/bolt-fastify")
+const {App} = require("@slack/bolt")
+
+const receiver = new FastifyReceiver({
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  clientSecret: process.env.SLACK_CLIENT_SECRET,
+  scopes: ['commands', 'chat:write', 'chat:write.public', 'app_mentions:read'],
+  fastify,
+});
+
+const app = new App({ receiver })
+const responseBlocks = {
+		blocks: [
+			{
+				type: "video",
+				alt_text: "embedded site",
+				title: {
+					type: "plain_text",
+					text: "H E L o",
+					emoji: true
+				},
+				thumbnail_url: "https://http.cat/200",
+				video_url: "https://helo.vic.wf/"
+			}
+		]
+	}
+
+app.command('/helo', async({ack, respond})=>{
+  await ack()
+  await respond(responseBlocks)
+
+})
 fastify.register(require('fastify-ip',{
     strict: false,
     isAws: false,

@@ -53,7 +53,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            cursor: pointer;
+            cursor: not-allowed;
             transition: opacity 0.5s ease;
         }
 
@@ -64,7 +64,6 @@
             color: black;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             text-transform: uppercase;
             font-weight: bold;
             letter-spacing: 2px;
@@ -175,12 +174,14 @@
             "isp_name":"HARVARD-UNIV"
         };
 
+        const startOverlay = document.getElementById('start-overlay');
 
         const startBtn = document.getElementById("start-btn")
         fetch("/ip").then(r=>{
             r.json().then(j=>{
                 networkData = j
-                startBtn.innerText("H E L O")
+                startBtn.innerText = "H E L O"
+                startOverlay.style.cursor = "pointer"
             })
         })
 
@@ -221,7 +222,6 @@
             });
         }
 
-        const startOverlay = document.getElementById('start-overlay');
         const video = document.getElementById('bg-video');
 
         startOverlay.addEventListener('click', () => {

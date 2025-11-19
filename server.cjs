@@ -1,7 +1,7 @@
 const fastify = require('fastify')({ logger: true })
 const path = require("node:path")
 
-const {receiver} = require("@seratch_/bolt-fastify")
+const {FastifyReceiver} = require("@seratch_/bolt-fastify")
 const {App} = require("@slack/bolt")
 
 const receiver = new FastifyReceiver({
@@ -33,10 +33,10 @@ app.command('/helo', async({ack, respond})=>{
   await respond(responseBlocks)
 
 })
-fastify.register(require('fastify-ip',{
+fastify.register(require('fastify-ip'),{
     strict: false,
     isAws: false,
-}))
+})
 
 fastify.register(require("@fastify/static"),{
   root: path.join(__dirname, 'public'),
@@ -50,7 +50,7 @@ fastify.get('/', async function handler (request, reply) {
 
 fastify.get('/ip', async function handler(request, reply) {
     ip = request.ip
-    if (ip) ip + '/'+ip 
+    if (ip) ip = '/'+ip 
     else ip = ''
 
     res = await fetch("https://ip.hackclub.com/ip"+ip) 
@@ -58,7 +58,7 @@ fastify.get('/ip', async function handler(request, reply) {
     reply.send(j)
 })
 
-fastify.listen({ port: process.env.PORT || 6969 }, (err) => {
+fastify.listen({ port: process.env.PORT || 6969, host: '0.0.0.0' }, (err) => {
   if (err) {
     fastify.log.error(err)
     process.exit(1)

@@ -6,12 +6,13 @@ const {App} = require("@slack/bolt")
 
 const receiver = new FastifyReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
-  token: process.env.SLACK_BOT_TOKEN,
   scopes: ['commands', 'chat:write', 'chat:write.public', 'app_mentions:read'],
   fastify,
 });
 
-const app = new App({ receiver })
+const app = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+   receiver })
 const responseBlocks = {
 		blocks: [
 			{

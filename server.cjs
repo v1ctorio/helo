@@ -34,6 +34,10 @@ app.command('/helo', async({ack, respond})=>{
   await respond(responseBlocks)
 
 })
+
+app.event('app_mention', async({say})=>{
+  await say(responseBlocks)
+})
 fastify.register(require('fastify-ip'),{
     strict: false,
     isAws: false,

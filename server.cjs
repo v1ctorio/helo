@@ -19,7 +19,7 @@ const responseBlocks = {
 				alt_text: "embedded site",
 				title: {
 					type: "plain_text",
-					text: "H E L o",
+					text: "Vide title",
 					emoji: true
 				},
 				thumbnail_url: "https://cachet.dunkirk.sh/users/U072PTA5BNG/r",

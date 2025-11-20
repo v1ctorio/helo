@@ -179,7 +179,30 @@
         const startBtn = document.getElementById("start-btn")
         fetch("/ip").then(r=>{
             r.json().then(j=>{
-                networkData = j
+                networkData = {
+            "time_zone":j.time_zone,
+            "postal_code": j.postal_code,
+            "country_name":j.country_name,
+            "subdivision_1_iso_code":j.subdivision_1_iso_code,
+            "network":j.network,
+            "isp_name":j.is_in_european_union,
+            "latitude":j.latitude,
+            "longitude":j.latitude,
+            "accuracy_radius":j.accuracy_radius,
+            "city_name":j.city_name,
+            "continent_code":j.continent_code,
+            "continent_name":j.continent_name,
+            "country_iso_code":j.country_iso_code,
+            "subdivision_1_name":j.subdivision_1_name,
+            "subdivision_2_iso_code":j.subdivision_2_iso_code,
+            "subdivision_2_name":j.subdivision_2_name,
+            "locale_code":j.locale_code,
+            "metro_code":j.metro_code,
+            "is_in_european_union":j.is_in_european_union,
+            "is_satellite_provider":j.is_satellite_provider,
+            "is_anycast":j.is_anycast,
+            "is_anonymous_proxy":j.is_anonymous_proxy,
+        };
                 startBtn.innerText = "H E L O"
                 startOverlay.style.cursor = "pointer"
             })

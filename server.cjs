@@ -19,7 +19,7 @@ const responseBlocks = {
 				alt_text: "embedded site",
 				title: {
 					type: "plain_text",
-					text: "Vide title",
+					text: "H E L o",
 					emoji: true
 				},
 				thumbnail_url: "https://cachet.dunkirk.sh/users/U072PTA5BNG/r",
@@ -28,9 +28,9 @@ const responseBlocks = {
 		]
 	}
 
-app.command('/helo', async({ack, respond})=>{
+app.command('/helo', async({ack, respond, say})=>{
   await ack()
-  await respond(responseBlocks)
+  await say(responseBlocks)
 
 })
 

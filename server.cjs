@@ -22,7 +22,7 @@ const responseBlocks = {
 					text: "H E L o",
 					emoji: true
 				},
-				thumbnail_url: "https://cachet.dunkirk.sh/users/U072PTA5BNG/r",
+				thumbnail_url: "https://http.cat/200",
 				video_url: "https://helo.vic.wf/"
 			}
 		]
